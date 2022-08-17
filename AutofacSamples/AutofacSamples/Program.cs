@@ -43,6 +43,12 @@ namespace AutofacSamples
             id = new Random().Next();
         }
 
+        public Engine(ILog log, int id)
+        {
+            this.log = log;
+            this.id = id;
+        }
+
         public void Ahead(int power)
         {
             log.Write($"Engine [{id}] ahead {power}");
@@ -78,15 +84,15 @@ namespace AutofacSamples
         public static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<ConsoleLog>().As<ILog>();
-            builder.RegisterType<Engine>();
-            builder.RegisterType<Car>()
-              .UsingConstructor(typeof(Engine));
+
+            // IList<T> --> List<T>
+            // IList<int> --> List<int>
+            builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
 
             IContainer container = builder.Build();
 
-            var car = container.Resolve<Car>();
-            car.Go();
+            var myList = container.Resolve<IList<int>>();
+            Console.WriteLine(myList.GetType());
         }
     }
 }
