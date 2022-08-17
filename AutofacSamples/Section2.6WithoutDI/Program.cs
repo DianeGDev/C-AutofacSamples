@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Autofac;
 
 namespace AutofacSamples
 {
@@ -56,16 +55,9 @@ namespace AutofacSamples
   {
     public static void Main(string[] args)
     {
-      var builder = new ContainerBuilder();
-      builder.RegisterType<ConsoleLog>().As<ILog>().AsSelf();
-      builder.RegisterType<Engine>();
-      builder.RegisterType<Car>();
-
-      IContainer container = builder.Build();
-
-      var log = container.Resolve<ConsoleLog>();
-
-      var car = container.Resolve<Car>();
+      var log = new ConsoleLog();
+      var engine = new Engine(log);
+      var car = new Car(engine, log);
       car.Go();
     }
   }
