@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "zFw3V8Uu6U9isAi8ddn4VdVNB3EwhUcrW6q4bL/TZqOeC/mjeJdxOWUtgJfG0sqGeDH8NERkiLAX/nPphXiupA==",
+  "success": true,
+  "projectFilePath": "C:\\_$Development\\_$GITSource\\C#AutofacSamples\\AutofacSamples\\AutofacSamples\\AutofacSamples.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Diane\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.28\\microsoft.netcore.app.host.win-x64.3.1.28.nupkg.sha512"
+  ],
+  "logs": []
+}
