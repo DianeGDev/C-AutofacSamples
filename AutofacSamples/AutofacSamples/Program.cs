@@ -4,69 +4,89 @@ using Autofac;
 
 namespace AutofacSamples
 {
-  public interface ILog
-  {
-    void Write(string message);
-  }
-
-  public class ConsoleLog : ILog
-  {
-    public void Write(string message)
+    public interface ILog
     {
-      Console.WriteLine(message);
-    }
-  }
-
-  public class Engine
-  {
-    private ILog log;
-    private int id;
-
-    public Engine(ILog log)
-    {
-      this.log = log;
-      id = new Random().Next();
+        void Write(string message);
     }
 
-    public void Ahead(int power)
+    public interface IConsole
     {
-      log.Write($"Engine [{id}] ahead {power}");
-    }
-  }
 
-  public class Car
-  {
-    private Engine engine;
-    private ILog log;
-
-    public Car(Engine engine, ILog log)
-    {
-      this.engine = engine;
-      this.log = log;
     }
 
-    public void Go()
+    public class ConsoleLog : ILog, IConsole
     {
-      engine.Ahead(100);
-      log.Write("Car going forward...");
+        public void Write(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
-  }
 
-  internal class Program
-  {
-    public static void Main(string[] args)
+    public class EmailLog : ILog
     {
-      var builder = new ContainerBuilder();
-      builder.RegisterType<ConsoleLog>().As<ILog>().AsSelf();
-      builder.RegisterType<Engine>();
-      builder.RegisterType<Car>();
+        private const string adminEmail = "admin@foo.com";
 
-      IContainer container = builder.Build();
-
-      var log = container.Resolve<ConsoleLog>();
-
-      var car = container.Resolve<Car>();
-      car.Go();
+        public void Write(string message)
+        {
+            Console.WriteLine($"Email sent to {adminEmail} : {message}");
+        }
     }
-  }
+
+    public class Engine
+    {
+        private ILog log;
+        private int id;
+
+        public Engine(ILog log)
+        {
+            this.log = log;
+            id = new Random().Next();
+        }
+
+        public void Ahead(int power)
+        {
+            log.Write($"Engine [{id}] ahead {power}");
+        }
+    }
+
+    public class Car
+    {
+        private Engine engine;
+        private ILog log;
+
+        public Car(Engine engine)
+        {
+            this.engine = engine;
+            this.log = new EmailLog();
+        }
+
+        public Car(Engine engine, ILog log)
+        {
+            this.engine = engine;
+            this.log = log;
+        }
+
+        public void Go()
+        {
+            engine.Ahead(100);
+            log.Write("Car going forward...");
+        }
+    }
+
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ConsoleLog>().As<ILog>();
+            builder.RegisterType<Engine>();
+            builder.RegisterType<Car>()
+              .UsingConstructor(typeof(Engine));
+
+            IContainer container = builder.Build();
+
+            var car = container.Resolve<Car>();
+            car.Go();
+        }
+    }
 }
