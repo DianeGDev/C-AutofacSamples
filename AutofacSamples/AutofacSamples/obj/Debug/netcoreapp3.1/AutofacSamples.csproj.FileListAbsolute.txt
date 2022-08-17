@@ -12,3 +12,6 @@ C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.dll
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.pdb
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.genruntimeconfig.cache
+C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\Autofac.dll
+C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.csproj.CopyComplete
