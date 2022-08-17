@@ -4,14 +4,14 @@ C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\AutofacSamples.runtimeconfig.dev.json
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\AutofacSamples.dll
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\AutofacSamples.pdb
+C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\Autofac.dll
+C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.csproj.AssemblyReference.cache
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.GeneratedMSBuildEditorConfig.editorconfig
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.AssemblyInfoInputs.cache
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.AssemblyInfo.cs
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.csproj.CoreCompileInputs.cache
+C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.csproj.CopyComplete
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.dll
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.pdb
 C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.genruntimeconfig.cache
-C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\Autofac.dll
-C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
-C:\_$Development\_$GITSource\C#AutofacSamples\AutofacSamples\AutofacSamples\obj\Debug\netcoreapp3.1\AutofacSamples.csproj.CopyComplete
