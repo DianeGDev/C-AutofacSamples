@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "6PIcfCKagnKKssGBdTYAXdVkl08RuWm/NVQ6/RjPGJWnEehJxA6vTPL0gRvbmotc56I8y675v0u33cFJIXu8rA==",
+  "dgSpecHash": "IPr85DfOoDw/4hFGAqeCnwicOZe/Sv+fqAvB7K9LRqKG7BVfCZKqFId0lX+Tj4oPpdN/8nCZLj82W9+ClzYvSQ==",
   "success": true,
   "projectFilePath": "C:\\_$Development\\_$GITSource\\C#AutofacSamples\\AutofacSamples\\AutofacSamples\\AutofacSamples.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Diane\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
-    "C:\\Users\\Diane\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512",
-    "C:\\Users\\Diane\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.28\\microsoft.netcore.app.host.win-x64.3.1.28.nupkg.sha512"
+    "C:\\Users\\Diane\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }
