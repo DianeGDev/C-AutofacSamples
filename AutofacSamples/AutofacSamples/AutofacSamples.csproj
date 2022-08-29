@@ -9,6 +9,11 @@
     <None Remove="Section2.6WithoutDI\AProgram.cs.txt" />
     <None Remove="Section2.7RegisteringTypes\AProgram.cs.txt" />
     <None Remove="Section3.16DelegateFactories\AutofacDemos.DelegateFactories.txt" />
+    <None Remove="Section3.16DelegateFactories\Program.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Section3.16DelegateFactories\Program.txt" />
   </ItemGroup>
 
   <ItemGroup>
