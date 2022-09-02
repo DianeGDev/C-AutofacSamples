@@ -1,54 +1,148 @@
 ﻿using System;
+using System.Collections.Generic;
 using Autofac;
+using Autofac.Core;
 
-namespace PatternDemoCore
+namespace AutofacSamples
 {
-    public class Entity
+    public interface ILog
     {
-        public delegate Entity Factory();
+        void Write(string message);
+    }
 
-        private static Random random = new Random();
-        private int number;
+    public interface IConsole
+    {
 
-        public Entity()
+    }
+
+    public class ConsoleLog : ILog, IConsole
+    {
+        public void Write(string message)
         {
-            number = random.Next();
+            Console.WriteLine(message);
+        }
+    }
+
+    public class EmailLog : ILog
+    {
+        private const string adminEmail = "admin@foo.com";
+
+        public void Write(string message)
+        {
+            Console.WriteLine($"Email sent to {adminEmail} : {message}");
+        }
+    }
+
+    public class Engine
+    {
+        private ILog log;
+        private int id;
+
+        public Engine(ILog log)
+        {
+            this.log = log;
+            id = new Random().Next();
         }
 
+        public Engine(ILog log, int id)
+        {
+            this.log = log;
+            this.id = id;
+        }
+
+        public void Ahead(int power)
+        {
+            log.Write($"Engine [{id}] ahead {power}");
+        }
+    }
+
+    public class SMSLog : ILog
+    {
+        private string phoneNumber;
+
+        public SMSLog(string phoneNumber)
+        {
+            this.phoneNumber = phoneNumber;
+        }
+
+        public void Write(string message)
+        {
+            Console.WriteLine($"SMS to {phoneNumber} : {message}");
+        }
+    }
+
+    public class Car
+    {
+        private Engine engine;
+        private ILog log;
+
+        public Car(Engine engine)
+        {
+            this.engine = engine;
+            this.log = new EmailLog();
+        }
+
+        public Car(Engine engine, ILog log)
+        {
+            this.engine = engine;
+            this.log = log;
+        }
+
+        public void Go()
+        {
+            engine.Ahead(100);
+            log.Write("Car going forward...");
+        }
+    }
+
+    public class Parent
+    {
         public override string ToString()
         {
-            return "test " + number;
+            return "I am your father";
         }
     }
 
-    public class ViewModel
+    public class Child
     {
-        private readonly Entity.Factory entityFactory;
+        public string Name { get; set; }
+        public Parent Parent { get; set; }
 
-        public ViewModel(Entity.Factory entityFactory)
+        public void SetParent(Parent parent)
         {
-            this.entityFactory = entityFactory;
-        }
-
-        public void Method()
-        {
-            var entity = entityFactory();
-            Console.WriteLine(entity);
+            Parent = parent;
         }
     }
 
-    public class Demo
+    internal class Program
     {
         public static void Main(string[] args)
         {
-            var cb = new ContainerBuilder();
-            cb.RegisterType<Entity>().InstancePerDependency();
-            cb.RegisterType<ViewModel>();
+            var builder = new ContainerBuilder();
+            builder.RegisterType<Parent>();
 
-            var container = cb.Build();
-            var vm = container.Resolve<ViewModel>();
-            vm.Method();
-            vm.Method();
+            //builder.RegisterType<Child>().PropertiesAutowired();
+
+            //      builder.RegisterType<Child>()
+            //        .WithProperty("Parent", new Parent());
+
+            //      builder.Register(c =>
+            //      {
+            //        var child = new Child();
+            //        child.SetParent(c.Resolve<Parent>());
+            //        return child;
+            //      });
+
+            builder.RegisterType<Child>()
+              .OnActivated((IActivatedEventArgs<Child> e) =>
+              {
+                  var p = e.Context.Resolve<Parent>();
+                  e.Instance.SetParent(p);
+              });
+
+            var container = builder.Build();
+            var parent = container.Resolve<Child>().Parent;
+            Console.WriteLine(parent);
         }
     }
 }
