@@ -1,138 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
 using Autofac;
-using Autofac.Core;
 
-namespace AutofacSamples
+namespace PatternDemoCore
 {
-    public interface ILog
+    public class Entity
     {
-        void Write(string message);
-    }
+        public delegate Entity Factory();
 
-    public interface IConsole
-    {
+        private static Random random = new Random();
+        private int number;
 
-    }
-
-    public class ConsoleLog : ILog, IConsole
-    {
-        public void Write(string message)
+        public Entity()
         {
-            Console.WriteLine(message);
+            number = random.Next();
         }
-    }
 
-    public class EmailLog : ILog
-    {
-        private const string adminEmail = "admin@foo.com";
-
-        public void Write(string message)
+        public override string ToString()
         {
-            Console.WriteLine($"Email sent to {adminEmail} : {message}");
+            return "test " + number;
         }
     }
 
-    public class Engine
+    public class ViewModel
     {
-        private ILog log;
-        private int id;
+        private readonly Entity.Factory entityFactory;
 
-        public Engine(ILog log)
+        public ViewModel(Entity.Factory entityFactory)
         {
-            this.log = log;
-            id = new Random().Next();
+            this.entityFactory = entityFactory;
         }
 
-        public Engine(ILog log, int id)
+        public void Method()
         {
-            this.log = log;
-            this.id = id;
-        }
-
-        public void Ahead(int power)
-        {
-            log.Write($"Engine [{id}] ahead {power}");
+            var entity = entityFactory();
+            Console.WriteLine(entity);
         }
     }
 
-    public class SMSLog : ILog
-    {
-        private string phoneNumber;
-
-        public SMSLog(string phoneNumber)
-        {
-            this.phoneNumber = phoneNumber;
-        }
-
-        public void Write(string message)
-        {
-            Console.WriteLine($"SMS to {phoneNumber} : {message}");
-        }
-    }
-
-    public class Car
-    {
-        private Engine engine;
-        private ILog log;
-
-        public Car(Engine engine)
-        {
-            this.engine = engine;
-            this.log = new EmailLog();
-        }
-
-        public Car(Engine engine, ILog log)
-        {
-            this.engine = engine;
-            this.log = log;
-        }
-
-        public void Go()
-        {
-            engine.Ahead(100);
-            log.Write("Car going forward...");
-        }
-    }
-
-    internal class Program
+    public class Demo
     {
         public static void Main(string[] args)
         {
-            var builder = new ContainerBuilder();
+            var cb = new ContainerBuilder();
+            cb.RegisterType<Entity>().InstancePerDependency();
+            cb.RegisterType<ViewModel>();
 
-            // named parameter
-            //      builder.RegisterType<SMSLog>()
-            //        .As<ILog>()
-            //        .WithParameter("phoneNumber", "+12345678");
-
-            // typed parameter
-            //      builder.RegisterType<SMSLog>()
-            //        .As<ILog>()
-            //        .WithParameter(new TypedParameter(typeof(string), "+12345678"));
-
-            // resolved parameter
-            //      builder.RegisterType<SMSLog>()
-            //        .As<ILog>()
-            //        .WithParameter(
-            //          new ResolvedParameter(
-            //            // predicate
-            //            (pi, ctx) => pi.ParameterType == typeof(string) && pi.Name == "phoneNumber",
-            //            // value accessor
-            //            (pi, ctx) => "+12345678"
-            //          )
-            //        );
-            //
-            //
-            Random random = new Random();
-            builder.Register((c, p) => new SMSLog(p.Named<string>("phoneNumber")))
-              .As<ILog>();
-
-            Console.WriteLine("About to build container...");
-            var container = builder.Build();
-
-            var log = container.Resolve<ILog>(new NamedParameter("phoneNumber", random.Next().ToString()));
-            log.Write("Testing");
+            var container = cb.Build();
+            var vm = container.Resolve<ViewModel>();
+            vm.Method();
+            vm.Method();
         }
     }
 }

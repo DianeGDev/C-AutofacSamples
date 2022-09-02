@@ -8,16 +8,21 @@
   <ItemGroup>
     <None Remove="Section2.6WithoutDI\AProgram.cs.txt" />
     <None Remove="Section2.7RegisteringTypes\AProgram.cs.txt" />
-    <None Remove="Section3.16DelegateFactories\AutofacDemos.DelegateFactories.txt" />
     <None Remove="Section3.16DelegateFactories\Program.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Section3.16DelegateFactories\Program.txt" />
+    <PackageReference Include="Autofac" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.4.0" />
+    <None Update="Section2.7RegisteringTypes\Program.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Section3.17ObjectsOnDemand\" />
   </ItemGroup>
 
 </Project>
